@@ -1,0 +1,2 @@
+module AcquisitionSalesHelper
+end

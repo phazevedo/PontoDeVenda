@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @stock.product %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @stock.qty %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @stock.action %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

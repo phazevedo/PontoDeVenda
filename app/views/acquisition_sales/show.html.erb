@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @acquisition_sale.product %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @acquisition_sale.qty %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @acquisition_sale.value %>
+</p>
+
+<%= link_to 'Edit', edit_acquisition_sale_path(@acquisition_sale) %> |
+<%= link_to 'Back', acquisition_sales_path %>

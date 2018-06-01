@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Acquisition Sales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acquisition_sales.each do |acquisition_sale| %>
+      <tr>
+        <td><%= acquisition_sale.product %></td>
+        <td><%= acquisition_sale.qty %></td>
+        <td><%= acquisition_sale.value %></td>
+        <td><%= link_to 'Show', acquisition_sale %></td>
+        <td><%= link_to 'Edit', edit_acquisition_sale_path(acquisition_sale) %></td>
+        <td><%= link_to 'Destroy', acquisition_sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acquisition Sale', new_acquisition_sale_path %>
