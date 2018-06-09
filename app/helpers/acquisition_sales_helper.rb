@@ -1,2 +1,2 @@
-module AcquisitionSalesHelper
+module AcquisitionProductsHelper
 end

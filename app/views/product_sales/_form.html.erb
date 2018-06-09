@@ -1,10 +1,10 @@
-<%= form_for(product_sale) do |f| %>
-  <% if product_sale.errors.any? %>
+<%= form_for(sale_product) do |f| %>
+  <% if sale_product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(product_sale.errors.count, "error") %> prohibited this product_sale from being saved:</h2>
+      <h2><%= pluralize(sale_product.errors.count, "error") %> prohibited this sale_product from being saved:</h2>
 
       <ul>
-      <% product_sale.errors.full_messages.each do |message| %>
+      <% sale_product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

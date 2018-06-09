@@ -13,14 +13,14 @@
   </thead>
 
   <tbody>
-    <% @product_sales.each do |product_sale| %>
+    <% @sale_products.each do |sale_product| %>
       <tr>
-        <td><%= product_sale.product %></td>
-        <td><%= product_sale.qty %></td>
-        <td><%= product_sale.value %></td>
-        <td><%= link_to 'Show', product_sale %></td>
-        <td><%= link_to 'Edit', edit_product_sale_path(product_sale) %></td>
-        <td><%= link_to 'Destroy', product_sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= sale_product.product %></td>
+        <td><%= sale_product.qty %></td>
+        <td><%= sale_product.value %></td>
+        <td><%= link_to 'Show', sale_product %></td>
+        <td><%= link_to 'Edit', edit_sale_product_path(sale_product) %></td>
+        <td><%= link_to 'Destroy', sale_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Product Sale', new_product_sale_path %>
+<%= link_to 'New Product Sale', new_sale_product_path %>

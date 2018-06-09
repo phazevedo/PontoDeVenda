@@ -1,1 +1,1 @@
-json.array! @acquisition_sales, partial: 'acquisition_sales/acquisition_sale', as: :acquisition_sale
+json.array! @acquisition_products, partial: 'acquisition_products/acquisition_product', as: :acquisition_product

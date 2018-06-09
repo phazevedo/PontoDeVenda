@@ -1,2 +1,2 @@
-module ProductSalesHelper
+module SaleProductsHelper
 end

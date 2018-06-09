@@ -1,1 +1,1 @@
-json.partial! "product_sales/product_sale", product_sale: @product_sale
+json.partial! "sale_products/sale_product", sale_product: @sale_product
