@@ -1,0 +1,36 @@
+<div class = "row">
+    <div class="form-group col-md-2">
+        <%= label_tag "ID" %>
+        <%= text_field_tag "id_search", nil, class: "form-control", onkeyup: "filter('id_search', 'product_table', 0)" %>
+    </div>
+    <div class="form-group col-md-6">
+        <%= label_tag "Nome" %>
+        <%= text_field_tag "name_search", nil, class: "form-control", onkeyup: "filter('name_search', 'product_table', 1)" %>
+    </div>
+</div>
+
+<table class="table" id="product_table">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Descrição</th>
+      <th>Venda</th>
+      <th>Custo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.description %></td>
+        <td><%= product.value %></td>
+        <td><%= product.cost_value %></td>
+        <td>
+            <input type="button" value="Adicionar" class="btn btn-outline-success" data-dismiss="modal" onclick="addProduct(<%= product.to_json %>)">
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

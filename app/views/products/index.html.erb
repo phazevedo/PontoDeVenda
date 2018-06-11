@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
 
-<table>
+
+<h1>Produtos</h1>
+
+<table class="table">
   <thead>
     <tr>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Cost value</th>
+      <th>Descrição</th>
+      <th>Valor Venda</th>
+      <th>Valor de Custo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +20,9 @@
         <td><%= product.description %></td>
         <td><%= product.value %></td>
         <td><%= product.cost_value %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visualizar', product,class: "btn btn-outline-info  ml-auto" %></td>
+        <td><%= link_to 'Editar', edit_product_path(product),class: "btn btn-outline-warning  ml-auto" %></td>
+        <td><%= link_to 'Excluir', product,class: "btn btn-outline-danger  ml-auto", method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Novo Produto', new_product_path,class: "btn btn-outline-success  ml-auto" %>

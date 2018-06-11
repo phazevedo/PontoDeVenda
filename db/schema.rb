@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 20180601173338) do
 
   create_table "acquisition_products", force: :cascade do |t|
     t.integer  "product_id"
+    t.integer  "acquisition_id"
     t.decimal  "qty"
     t.decimal  "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["acquisition_id"], name: "index_acquisition_products_on_acquisition_id", using: :btree
     t.index ["product_id"], name: "index_acquisition_products_on_product_id", using: :btree
   end
 
@@ -53,13 +55,10 @@ ActiveRecord::Schema.define(version: 20180601173338) do
     t.index ["user_id", "user_type"], name: "user_index", using: :btree
   end
 
-  create_table "sale_products", force: :cascade do |t|
-    t.integer  "product_id"
-    t.decimal  "qty"
-    t.decimal  "value"
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_sale_products_on_product_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -70,11 +69,24 @@ ActiveRecord::Schema.define(version: 20180601173338) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "sales", force: :cascade do |t|
-    t.date     "date"
+  create_table "sale_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "sale_id"
+    t.decimal  "qty"
     t.decimal  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_sale_products_on_product_id", using: :btree
+    t.index ["sale_id"], name: "index_sale_products_on_sale_id", using: :btree
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.date     "date"
+    t.decimal  "value"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_sales_on_client_id", using: :btree
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -105,7 +117,10 @@ ActiveRecord::Schema.define(version: 20180601173338) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "acquisition_products", "acquisitions"
   add_foreign_key "acquisition_products", "products"
   add_foreign_key "sale_products", "products"
+  add_foreign_key "sale_products", "sales"
+  add_foreign_key "sales", "clients"
   add_foreign_key "stocks", "products"
 end

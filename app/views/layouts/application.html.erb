@@ -2,15 +2,20 @@
 <html>
   <head>
     <title>Myapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-      
-  <div class="content-wrapper">
-    <%= yield %>
+  <%= render partial: 'navbar' %>
+  <div class="container-fluid">
+    <div class="row">
+      <%= render partial: 'sidebar' %>    
+      <main class="nav flex-column ml-3">
+        <%= yield %>
+      </main>
+    </div>
   </div>
   </body>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </html>

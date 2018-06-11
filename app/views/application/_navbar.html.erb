@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<%= root_path %>">
+    <img src="https://www.pdvwireless.com/wp-content/uploads/2016/04/logo-pdvwireless-color.png" alt="logo" height="40px">
+  </a>
+
+  <div class="collapse navbar-collapse">
+    <%= link_to 'Sair', destroy_user_session_path, class: "btn btn-outline-danger  ml-auto", method: :delete %>
+  </div>
+</nav>

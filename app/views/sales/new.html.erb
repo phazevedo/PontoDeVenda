@@ -1,5 +1,76 @@
-<h1>New Sale</h1>
+<h1>Realizar venda</h1>
+<%= form_for(@sale) do |f| %>
+    <div class="d-flex flex-column mb-3">
+        <%= label_tag "Selecione o cliente" %>
+        <div class="d-flex flex-row">    
+            <%= text_field_tag "client_id", nil, { class: "form-control", disabled: "true"} %>
+            <input type="button" value="Selecionar" class="btn btn-success" data-toggle="modal" data-target="#selectClientModal">
+        </div>
+    </div>
+    <div class="d-flex flex-column mb-2">
+    <h4>PRODUTOS</h4>
+        <div class="d-flex flex-row ml-auto">    
+            <input type="button" value="Adicionar" class="btn btn-success" data-toggle="modal" data-target="#addProductModal">
+        </div>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>Quantidade</th>
+        <th>Valor Total</th>
+        <th>Cancelar</th>
+        </tr>
+    </thead>
 
-<%= render 'form', sale: @sale %>
+    <tbody  id="products">
 
-<%= link_to 'Back', sales_path %>
+    </tbody>
+    </table>
+    <div>
+    <%= text_field_tag "total", nil, { class: "form-control text-right mb-5", disabled: "true"} %>
+    </div>
+    <div id="fields">
+    </div>
+
+    <div class="d-flex flex-row ml-auto">
+        <input type="button" value="Confimar venda" class="btn btn-success" onclick="formSubmit()">
+    </div>
+    
+
+<%end%>
+    <div class="modal" tabindex="-1" role="dialog" id="selectClientModal" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Selecione o cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%= render partial: 'client_modal' %>                        
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="addProductModal" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: 'product_modal' %>                        
+
+      </div>
+    </div>
+  </div>
+</div>

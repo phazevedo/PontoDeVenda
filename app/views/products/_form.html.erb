@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label "Descrição" %>
+    <%= f.text_field :description, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :value %>
-    <%= f.text_field :value %>
+  <div class="form-group">
+    <%= f.label "Valor de venda" %>
+    <%= f.text_field :value, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :cost_value %>
-    <%= f.text_field :cost_value %>
+  <div class="form-group">
+    <%= f.label "Valor de custo" %>
+    <%= f.text_field :cost_value, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="">
+    <%= f.submit "Salvar",  class: "btn btn-success  mr-auto"%>
   </div>
 <% end %>

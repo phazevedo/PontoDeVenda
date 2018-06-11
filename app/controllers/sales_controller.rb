@@ -15,6 +15,8 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+    @products = Product.all
+    @clients = Client.all
   end
 
   # GET /sales/1/edit
@@ -24,13 +26,23 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
+    params['sale']["date"] = Date.today
     @sale = Sale.new(sale_params)
+    binding.pry
+    sale_save = @sale.save
+    if sale_save
+      items = params["items"]
+      items.each do |item|
+        prod = SaleProduct.create(product_id: items[item]["id"], qty: items[item]["qty"], sale_id: @sale.id, value: items[item]["value"])
+        Stock.generate_sale(prod)
+      end
+    end
 
     respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+      if sale_save
+        format.html { redirect_to @sale, notice: 'Venda gravada com sucesso' }
         format.json { render :show, status: :created, location: @sale }
-      else
+      else 
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
@@ -54,6 +66,7 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
+    @sale.sale_products.delete_all
     @sale.destroy
     respond_to do |format|
       format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
@@ -69,6 +82,6 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:date, :value)
+      params.require(:sale).permit(:date, :value, :client_id)
     end
 end
