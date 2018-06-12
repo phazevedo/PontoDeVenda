@@ -28,7 +28,6 @@ class SalesController < ApplicationController
   def create
     params['sale']["date"] = Date.today
     @sale = Sale.new(sale_params)
-    binding.pry
     sale_save = @sale.save
     if sale_save
       items = params["items"]

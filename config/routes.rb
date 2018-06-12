@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   resources :clients
-  resources :stocks
-  resources :acquisition_products
-  resources :sale_products
-  resources :acquisitions
-  resources :sales
+  resources :sales, only: [:index, :show, :new, :destroy, :create]
   resources :products
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

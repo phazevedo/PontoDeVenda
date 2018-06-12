@@ -1,5 +1,6 @@
+<%= link_to 'Voltar', sales_path,class: "btn btn-outline-success  mr-auto" %>
 <h1>Venda</h1>
-
+<div>
     <div class="d-flex flex-column mb-3">
         <%= label_tag "Cliente" %>
         <%= text_field_tag nil, "#{@sale.client.id} - #{@sale.client.name}", { class: "form-control", disabled: "true"} %>
@@ -34,7 +35,6 @@
     <%= text_field_tag "total", @sale.value, { class: "form-control text-right mb-5", disabled: "true"} %>
     </div>
 
+</div>
    
 
-<%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
