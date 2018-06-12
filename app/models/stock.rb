@@ -15,7 +15,7 @@ class Stock < ApplicationRecord
     generate(prod, ACQUISITION)    
   end
 
-  def generate(prod, stock_action)
+  def self.generate(prod, stock_action)
     create(product_id: prod.product_id, qty: prod.qty, action: stock_action)
   end
 end

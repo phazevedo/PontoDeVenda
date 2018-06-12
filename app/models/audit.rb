@@ -12,11 +12,16 @@ class Audit < ApplicationRecord
     ACTIONS = [CREATE, UPDATE , DESTROY]
 
     def self.filter_users(opt)
-        all_user_audits = self.all
-        all_user_audits = all_user_audits.where(opt["auditable_id"])  if opt["auditable_id"].present?
-        auditable_type
-        user_id
-        action
-        created_at
-    end    
+        opt.merge(auditable_type: USER)
+        self.filter(opt)
+    end
+    
+    def self.filter(opt)
+        audits = audits.where(opt["auditable_id"])  if opt["auditable_id"].present?
+        audits = audits.where(opt["auditable_type"])  if opt["auditable_type"].present?
+        audits = audits.where(opt["user_id"])  if opt["user_id"].present?
+        audits = audits.where(opt["action"])  if opt["action"].present?
+        audits = audits.where(opt["created_at"])  if opt["created_at"].present?
+        audits
+    end
 end
