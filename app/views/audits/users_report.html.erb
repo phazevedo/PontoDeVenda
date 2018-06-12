@@ -1,0 +1,32 @@
+<%= link_to 'Voltar', reports_path %>
+<%= form_tag user_report_path do |f| %>
+  <div class="form-group">
+    <%= label "Módulos" %>
+    <%= select("filter", "module", @modules, { include_blank: true }) %>
+  </div>
+
+  <div class="form-group">
+    <%= label "Eventos" %>
+    <%= select("filter", "action", @actions, { include_blank: true }) %>
+  </div>
+
+  <div class="form-group">
+    <%= label "Código do usuário" %>
+    <%= text_field_tag nil, nil, { class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= label "Valor de venda" %>
+    <%= text_field :value, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label "Valor de custo" %>
+    <%= text_field :cost_value, class: "form-control" %>
+  </div>
+
+  <div class="">
+    <%= submit "Salvar",  class: "btn btn-success  mr-auto"%>
+  </div>
+<% end %>
+

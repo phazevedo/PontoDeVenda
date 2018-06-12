@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= link_to 'Voltar', reports_path %>
+<%= form_tag module_report_path, method: "get" do |f| %>
+  <div class="d-flex align-items-center justify-content-between">
+  <div class="form-group">
+    <%= label_tag "Módulos" %>
+    <%= select("filter", "auditable_type", @modules, { include_blank: true , class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Código do módulo" %>
+    <%= text_field_tag "filter[auditable_id]", nil, { class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Eventos" %>
+    <%= select("filter", "action", @actions, { include_blank: true }) %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Código do usuário que alterou" %>
+    <%= text_field_tag "filter[user_id]", nil, { class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Data" %>
+    <%= text_field_tag "filter[user_id]", nil, { class: "form-control", placeholder: "AAAA-MM-DD" } %>
+  </div>
+
+  <div class="">
+    <%= submit_tag "Salvar",  class: "btn btn-success  mr-auto"%>
+  </div>
+  </div>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Módulo</th>
+      <th>Id Mód.</th>
+      <th>Usuário</th>
+      <th>Evento</th>
+      <th>IP</th>
+      <th>Data</th>
+      <th>Dados</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @audits.each do |audit| %>
+      <tr>
+        <td><%= Audit::MODULE_HASH[audit.auditable_type] %></td>
+        <td><%= audit.auditable_id %></td>
+        <td><%= "#{User.find(audit.user_id).id rescue ''} - #{User.find(audit.user_id).username rescue ''}" %></td>
+        <td><%=  Audit::ACTION_HASH[audit.action] %></td>
+        <td><%=  audit.remote_address %></td>
+        <td><%=  audit.created_at %></td>
+        <td><%=  audit.audited_changes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
